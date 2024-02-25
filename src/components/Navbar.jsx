@@ -1,6 +1,10 @@
 import React from 'react';
+import { useAuth0 } from "@auth0/auth0-react";
 
 function Navbar() {
+    const { loginWithRedirect } = useAuth0();
+    const { logout } = useAuth0();
+    const { user, isAuthenticated, isLoading } = useAuth0();
     // Inline style for transparency
     const transparentStyle = { backgroundColor: 'rgba(0, 0, 0, 0)' };
 
@@ -15,19 +19,28 @@ function Navbar() {
                     <ul className="navbar-nav">
 
                         <li className="nav-item">
-                            <a className="navbar-brand mx-5 btn btn-light" href="/">Home</a>
+                            <button className="navbar-brand mx-5 btn btn-light" >Home <i className="fa-solid fa-house"></i></button>
                         </li>
                         <li className="nav-item">
-                            <a className="navbar-brand mx-5 btn btn-light" href="/">CropGuide</a>
+                            <button className="navbar-brand mx-5 btn btn-light" >CropGuide <i className="fa-solid fa-leaf"></i></button>
                         </li>
                         <li className="nav-item">
-                            <a className="navbar-brand mx-5 btn btn-light" href="/" tabIndex="-1" aria-disabled="true">AboutUs</a>
+                            <button className="navbar-brand mx-5 btn btn-light"  tabIndex="-1" aria-disabled="true">AboutUs <i className="fa-solid fa-address-card"></i></button>
                         </li>
-                        <li className="nav-item">
-                            <a className="navbar-brand mx-5 btn btn-light" href="/" tabIndex="-1" aria-disabled="true">Login</a>
-                        </li>
+                        {  !isAuthenticated && <li className="nav-item">
+                            <button className="navbar-brand mx-5 btn btn-light" onClick={() => loginWithRedirect()}  tabIndex="-1" aria-disabled="true">Login <i className="fa-solid fa-right-to-bracket"></i></button>
+                        </li> }
+                       { isAuthenticated && <li className="nav-item">
+                            <button className="navbar-brand mx-5 btn btn-light" onClick={() => logout({ logoutParams: { returnTo: window.location.origin } })}  tabIndex="-1" aria-disabled="true">Logout <i className="fa-solid fa-right-from-bracket"></i></button>
+                        </li>}
+                        { isLoading && <li className="nav-item">
+                            <button className="navbar-brand fa-fade mx-5 btn btn-light" onClick={() => loginWithRedirect()}  tabIndex="-1" aria-disabled="true">Loading...</button>
+                        </li> }
+                        { isAuthenticated && <li className="nav-item">
+                            <button className="navbar-brand mx-5 btn btn-light" onClick={() => logout({ logoutParams: { returnTo: window.location.origin } })}  tabIndex="-1" aria-disabled="true">{user.name+' '}<i className="fa-solid fa-circle-user"></i></button>
+                        </li>}
                         <li className="nav-item d-none">
-                            <a className="navbar-brand mx-5 btn btn-light" href="/" tabIndex="-1" aria-disabled="true">Support</a>
+                            <button className="navbar-brand mx-5 btn btn-light"  tabIndex="-1" aria-disabled="true">Support</button>
                         </li>
                     </ul>
 
@@ -40,3 +53,14 @@ function Navbar() {
 }
 
 export default Navbar;
+
+
+
+
+
+
+
+
+
+
+
