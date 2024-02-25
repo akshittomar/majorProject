@@ -8,12 +8,12 @@ import './home.css';
 
 function Home() {
   const headings = [
-    'Sample Heading Here ',
-    'Sample Heading Here ',
-    'Sample Heading Here ',
-    'Sample Heading Here ',
-    'Sample Heading Here ',
-    'Sample Heading Here '
+    'Seamless Security for Every User',
+    'Precision at Your Fingertips',
+    'Simplify Farming, Enrich Life',
+    'Harvesting Data, Growing Success',
+    'Future-Proof Your Farm',
+    'From Seed to Success'
   ];
   const icons = [
     "fa-solid fa-house",
@@ -22,7 +22,7 @@ function Home() {
     "fa-solid fa-house",
     "fa-solid fa-house",
     "fa-solid fa-house"
-    ]
+  ]
 
 
   const [currentHeadingIndex, setCurrentHeadingIndex] = useState(0);
@@ -46,45 +46,45 @@ function Home() {
         <source src={video} type="video/mp4" />
         Your browser does not support the video tag.
       </video>
-      <div className="fullscreen-bg__content">
-        <h1 className="fa-solid">CROP PREDICTION</h1>
+      <div className="fullscreen-bg__content"   >
+        <p className="mx-4 "   >Welcome to the Field of Tomorrow</p>
 
 
         <div style={{ display: "flex" }}>
           <div className="fade-in-heading-container">
             {headings.map((heading, index) => (
-              <h4
+              <p
                 key={index}
                 style={{ color: "", opacity: currentHeadingIndex === index ? 1 : 0 }}
-                className={currentHeadingIndex === index ? "fade-in-heading fa-fade" : "d-none"}
+                className={currentHeadingIndex === index ? "mx-4 fade-in-heading fa-fade" : "d-none"}
               >
-                {heading}&nbsp; <i class={icons[index]}></i>
-               
-              
-              </h4>
+                {heading}&nbsp; 
+
+
+              </p>
             ))}
           </div>
-          
-         
-          
+
+
+
         </div>
 
-        <div style={{ display: "flex", cursor :"pointer"}}>
-        <p  className='mx-3'  style={{color:"white"}}>
-       HEADING ONE HERE
-      </p>
-      <p className='mx-3'  style={{color:"white"}}> 
-         HEADING TWO HERE  </p>
-          
-          <p className='mx-3'  style={{color:"white"}}>
-            HEADING THREE HERE 
+         {/*<div style={{ display: "flex", cursor: "pointer" }}>
+          <p className='mx-3' style={{ color: "white" }}>
+            HEADING ONE HERE
+          </p>
+          <p className='mx-3' style={{ color: "white" }}>
+            HEADING TWO HERE  </p>
+
+          <p className='mx-3' style={{ color: "white" }}>
+            HEADING THREE HERE
           </p>
 
-          <p className='mx-3'  style={{color:"white"}}>
-            HEADING FOUR HERE 
-            </p>
-          
-        </div>
+          <p className='mx-3' style={{ color: "white" }}>
+            HEADING FOUR HERE
+          </p>
+
+            </div>*/ }
       </div>
     </div>
   );
