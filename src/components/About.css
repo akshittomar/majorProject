@@ -1,0 +1,32 @@
+.section-abt-us {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+}
+
+.Heading-abt-us {
+    width: 100wh;
+    height: 10vh;
+}
+
+.container-abt {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.person-card {
+    display: flex;
+    border: 1px solid black;
+    &>img {
+        width: 10vw;
+        height: 10vh;
+    }
+    &>p {
+        width: 60vw;
+        height: 10vh;
+    }
+}
