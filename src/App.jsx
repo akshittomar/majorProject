@@ -9,7 +9,7 @@ function App() {
   
 
   return (
-    <div style={{overflow:"hidden"}}  >
+    <div style={{overflowX:'hidden'}}>
       <Router>
     <Navbar></Navbar>
     <Routes>
