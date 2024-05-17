@@ -23,10 +23,13 @@ function Navbar() {
                             <Link to='/' > <button className="navbar-brand mx-5 btn btn-light" >Home <i className="fa-solid fa-house"></i></button></Link>
                         </li>
                         <li className="nav-item">
-                         <Link to='/cropguide' >   <button className="navbar-brand mx-5 btn btn-light" >CropGuide <i className="fa-solid fa-leaf"></i></button></Link>
+                            <Link to='/cropguide' >   <button className="navbar-brand mx-5 btn btn-light" >CropGuide <i className="fa-solid fa-leaf"></i></button></Link>
                         </li>
                         <li className="nav-item">
-                          <Link to='/about' >  <button className="navbar-brand mx-5 btn btn-light" tabIndex="-1" aria-disabled="true">AboutUs <i className="fa-solid fa-address-card"></i></button></Link>
+                            <Link to='/about' >  <button className="navbar-brand mx-5 btn btn-light" tabIndex="-1" aria-disabled="true">AboutUs <i className="fa-solid fa-address-card"></i></button></Link>
+                        </li>
+                        <li className="nav-item">
+                            <Link to='/predictions' >  <button className="navbar-brand mx-5 btn btn-light" tabIndex="-1" aria-disabled="true">Predictions <i className="fa-solid fa-wheat-awn"></i></button></Link>
                         </li>
                         {!isAuthenticated && <li className="nav-item">
                             <button className="navbar-brand mx-5 btn btn-light" onClick={() => loginWithRedirect()} tabIndex="-1" aria-disabled="true">Login <i className="fa-solid fa-right-to-bracket"></i></button>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React ,{useEffect,useState} from 'react';
 
 import './Card.css'; // Import the CSS file
 
@@ -19,6 +19,21 @@ import Form2 from '../components/Form2'
 function Card(props) {
     // Unique ID for each modal based on the card's ID prop
     const modalId = `exploreModal-${props.id}`;
+    const [change, setchange] = useState(0);
+    const [first, setfirst] = useState(0);
+    useEffect(() => {
+    console.log('I GOT CHANGED');
+    
+    }, [change])
+    
+    const  handleChange=()=> {
+      
+      if(change===0)
+        setchange(1);
+      else
+      setchange(0);
+
+    }
     
     return (
       <div>
@@ -40,12 +55,12 @@ function Card(props) {
                 <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
               <div className="modal-body">
-                {props.id==='1' && <Form1/>}
+                {props.id==='1' && <Form1  handleChange={handleChange} change={change}  />}
                 {props.id==='2' && <Form2></Form2>}
                 {/* Add more conditions here for other IDs */}
               </div>
               <div className="modal-footer">
-                <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" className="btn btn-secondary" data-bs-dismiss="modal" onClick={()=>{handleChange();}} >Close</button>
                 
               </div>
             </div>
