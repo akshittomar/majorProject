@@ -7,8 +7,10 @@ export default function Form2() {
     const [longitude, setlongitude] = useState(null)
     const [latitude, setlatitude] = useState(null)
     const [temp, settemp] = useState(null)
+    const [state, setstate] = useState(null)
     const [rain, setrain] = useState(null)
     const [humid, sethumid] = useState(null)
+    const [condition, setcondition] = useState(null)
 
     function handleGetLocation (){
         if ("geolocation" in navigator) {
@@ -56,8 +58,10 @@ export default function Form2() {
             const temperature = data.current.temp_c; // Temperature in Celsius
             const humidity = data.current.humidity; // Humidity percentage
             const precipitation = data.current.precip_mm; // Precipitation in millimeters
+            var stateName = data.location.region+", "+data.location.name;
+            setstate(stateName);
             console.log(`Temperature: ${temperature}°C, Humidity: ${humidity}%, Precipitation: ${precipitation}mm`);
-    
+            setcondition(data.current.condition);
             // Update state with fetched data
             sethumid(humidity);
             settemp(temperature);
@@ -82,12 +86,22 @@ export default function Form2() {
             <form>
                 <div className="form-row">
                 <div className="col-md-4 mb-3">
-                        <label htmlFor="getLocationButton">Get Location <i className="fa-solid fa-location-dot"></i> </label>
-                        <input type="button" className="form-control" id="getLocationButton" value="Get Location" required onClick={handleGetLocation} />
-                        {Loading!==null && !Loading && <>
+                        <label htmlFor="getLocationButton">Get Weather <i className="fa-solid fa-cloud-sun"></i> </label>
+                        <input type="button" className="form-control" id="getLocationButton" value="Get Weather" required onClick={handleGetLocation} />
+                        {/* {Loading!==null && !Loading && <>
                         <p>Temperature in  Celcius {temp}  <br/>
                         Humidity is {humid} %<br/>
                         Rainfall is {rain} mm </p>
+                        </> } */}
+                         {Loading!==null && !Loading && <>
+                        <p>
+                        <i className="fa-solid fa-map-pin fa-fade"></i> {state} <br/>    
+                        {"It's "+condition.text} <img style={{width:"25%"}}  src={condition.icon}/>  <br/>
+                        <i className="fa-solid fa-temperature-three-quarters fa-xl "></i> : {temp}°C  <br/>
+                        <i className="fa-solid fa-droplet fa-lg"></i> : {humid} %<br/>
+                      
+                       
+                        </p>
                         </> }
                         {
                            Loading!==null && Loading===true && <p className='fa-fade'>Loading....</p>
@@ -101,6 +115,10 @@ export default function Form2() {
                     <div className="col-md-4 mb-3">
                         <label htmlFor="validationDefault02">Potassium</label>
                         <input type="text" className="form-control" id="validationDefault02" placeholder="Potassium" value="" required/>
+                    </div>
+                    <div className="col-md-4 mb-3">
+                        <label htmlFor="validationDefault02">Phosphorus</label>
+                        <input type="text" className="form-control" id="validationDefault02" placeholder="Phosphorus" value="" required/>
                     </div>
                     <div className="col-md-4 mb-3">
                         <label htmlFor="validationDefault02">Phosphorus</label>

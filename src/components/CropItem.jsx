@@ -10,6 +10,11 @@ function CropItem(props) {
     <p className="card-text">{props.crop.temp}</p>
     <p className="card-text">{props.crop.nitro}</p>
     <p className="card-text">{props.crop.date}</p>
+    <p className="card-text">{props.crop.prediction}</p>
+    <p className="card-text">{props.crop.k}</p>
+    <p className="card-text">{props.crop.p}</p>
+    <p className="card-text">{props.crop.ph}</p>
+    <p className="card-text">{props.crop.humid}</p>
   </div>
 </div>
     </>

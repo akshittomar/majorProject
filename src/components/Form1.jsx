@@ -221,7 +221,7 @@ export default function Form1(props) {
                         {"It's "+condition.text} <img style={{width:"25%"}}  src={condition.icon}/>  <br/>
                         <i className="fa-solid fa-temperature-three-quarters fa-xl "></i> : {temp}°C  <br/>
                         <i className="fa-solid fa-droplet fa-lg"></i> : {humid} %<br/>
-                        <i className="fa-solid fa-cloud-bolt fa-lg"></i > : {rain} mm <br/>
+                    
                        
                         </p>
                         </> }
@@ -239,16 +239,16 @@ export default function Form1(props) {
                         <input type="text" className="form-control" id="validationDefault02" placeholder="Potassium" onChange={handlePotassiumChange} value={potassium} required />
                     </div>
                     <div className="col-md-4 mb-3">
-                        <label htmlFor="validationDefault02">Phosphorus</label>
-                        <input type="text" className="form-control" id="validationDefault02" placeholder="Phosphorus" value={Phosphorus} onChange={handlePhosChange} required />
+                        <label htmlFor="validationDefault03">Phosphorus</label>
+                        <input type="text" className="form-control" id="validationDefault03" placeholder="Phosphorus" value={Phosphorus} onChange={handlePhosChange} required />
                     </div>
                    
                     <div className="col-md-4 mb-3">
-                        <label htmlFor="validationDefault02">pH</label>
-                        <input type="text" className="form-control" id="validationDefault02" placeholder="pH" value={ph} onChange={handlephChange}  required />
+                        <label htmlFor="validationDefault04">pH</label>
+                        <input type="text" className="form-control" id="validationDefault04" placeholder="pH" value={ph} onChange={handlephChange}  required />
                     </div>
                     <div className="col-md-4 mb-3">
-                        <button className="btn btn-primary" type="submit" onClick={(e)=>{e.preventDefault();handleClick();handlechange();}}  >Submit form</button>
+                        <button className="btn btn-success" type="submit" onClick={(e)=>{e.preventDefault();handleClick();handlechange();}}  >Predict Crop</button>
                     </div>
                 </div>
             </form >
