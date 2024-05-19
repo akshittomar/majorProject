@@ -52,7 +52,7 @@ function Card(props) {
             <div className="modal-content">
               <div className="modal-header">
                 <h5 className="modal-title" id={`${modalId}Label`}>{props.heading}</h5>
-                <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <button type="button"  onClick={()=>{window.location.reload();}} className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
               <div className="modal-body">
                 {props.id==='1' && <Form1  handleChange={handleChange} change={change}  />}
@@ -60,7 +60,7 @@ function Card(props) {
                 {/* Add more conditions here for other IDs */}
               </div>
               <div className="modal-footer">
-                <button type="button" className="btn btn-secondary" data-bs-dismiss="modal" onClick={()=>{handleChange();}} >Close</button>
+                <button type="button" className="btn btn-secondary" data-bs-dismiss="modal" onClick={()=>{handleChange();window.location.reload();}} >Close</button>
                 
               </div>
             </div>

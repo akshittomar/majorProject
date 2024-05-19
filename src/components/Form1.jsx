@@ -1,5 +1,5 @@
 import React,{useState,useEffect} from 'react'
-
+import Load from '../assets/Bars.gif';
 export default function Form1(props) {
 
     const host = "http://localhost:3000";
@@ -20,6 +20,9 @@ export default function Form1(props) {
     const [humid, sethumid] = useState(null)
     const [condition, setcondition] = useState(null)
     const [crop, setcrop] = useState(null);
+    const [rainLoad, setrainLoad] = useState(false)
+    const [cropLoad, setcropLoad] = useState(false);
+    
     
     function handleGetLocation (){
         if ("geolocation" in navigator) {
@@ -79,14 +82,15 @@ export default function Form1(props) {
                 const temperature = data.current.temp_c; // Temperature in Celsius
                 const humidity = data.current.humidity; // Humidity percentage
                 const precipitation = data.current.precip_mm; // Precipitation in millimeters
-                var stateName = data.location.region+", "+data.location.name;
+                var stateName = data.location.region.toUpperCase()+", "+data.location.name.toUpperCase();
                 setstate(stateName);
+
                 console.log(`Temperature: ${temperature}°C, Humidity: ${humidity}%, Precipitation: ${precipitation}mm , State name : ${ data.location.region} `);
                 setcondition(data.current.condition);
                 // Update state with fetched data
                 sethumid(humidity);
                 settemp(temperature);
-                setrain(precipitation);
+                
             } catch (error) {
                 console.error('Error fetching weather data:', error);
             } finally {
@@ -129,14 +133,71 @@ export default function Form1(props) {
         }
         
         
+        const getRain = async()=> {
+
+
+            const predection = "Assumed Result";
+                    ;
+
+                setrainLoad(true);
+            
+
+                await createUser("akshitt125@gmail.com");
+                //console.log("PARAMETERS OF ADD NOTE"+title+" "+description+" "+tag);
+
+                var commaIndex = state.indexOf(',');
+                var State = state.substring(0, commaIndex).trim();
+                console.log("Extracted State: ", State);
+                if(State==="UTTARAKHAND")
+                    State = "UTTARANCHAL";
+                console.log("Extracted State: ", State);
+// Extract the city name using substring
+                var city = state.substring(commaIndex + 1).trim();
+                console.log("Extracted City: ", city)
+            
+                const currentDate = new Date();
+
+// Get the current month (0-11)
+const currentMonth = currentDate.getMonth();
+
+// Convert the month index to a 1-based month number
+                const monthNumber = currentMonth + 1;
+            
+                const response = await fetch( `${host}/api/rainprec/getrain`, {
+                  method: 'POST',
+                  headers:{
+                    'Content-Type':'application/json',
+                   
+                  },
+                  body: JSON.stringify({email:"akshitt125@gmail.com",State:State,District:city,Month:monthNumber})
+                });
+            
+                const rain = await response.json();
+            
+            
+            console.log(rain.rain);
+          setrain(rain.rain);
+          localStorage.setItem('rain',rain.rain);
+            setrainLoad(false);
+            
+    }
+
+
+
 
 
 
         const handleClick= async()=> {
 
+            setcropLoad(true);
+
+                await getRain();
+
+
+            var fetchedRain = localStorage.getItem('rain');
 
                 const predection = "Assumed Result";
-                console.log(nitrogen+" "+potassium+" "+ph+" "+Phosphorus+" "+rain+" "+temp+" "+humid+" "+predection)            ;
+                console.log(nitrogen+" "+potassium+" "+ph+" "+Phosphorus+" "+fetchedRain+" "+temp+" "+humid+" "+predection)            ;
 
 
                 
@@ -145,32 +206,41 @@ export default function Form1(props) {
                     //console.log("PARAMETERS OF ADD NOTE"+title+" "+description+" "+tag);
                 
                 
-                    const response = await fetch( `${host}/api/crop/addcrop`, {
+                    const response = await fetch( `${host}/api/croprec/croprecommend`, {
                       method: 'POST',
                       headers:{
                         'Content-Type':'application/json',
                        
                       },
-                      body: JSON.stringify({email:"akshitt125@gmail.com",rain:rain,temp:temp,humid:humid,nitro:nitrogen,p:Phosphorus,k:potassium,prediction:predection})
+                      body: JSON.stringify({email:"akshitt125@gmail.com",rain:fetchedRain,temp:temp,humid:humid,nitro:nitrogen,p:Phosphorus,k:potassium,ph:ph})
                     });
                 
-                    const json = await response.json(email,rain,temp,humid,nitro,p,k,predection);
+                    const json = await response.json();
                 
                 
                 
                  const   newCrop = json ;
-                setcrop(crop.concat(newCrop));
-                
+                // setcrop(crop.concat(newCrop));
+                console.log(newCrop.prediction);
+                localStorage.setItem("cropPrediction",newCrop.prediction);
+                // document.getElementById('crop').innerText = `The best suited crop at ${temp}°C , ${localStorage.getItem('rain')}mm(Expected this month ) with ${humid}% Humidity and having Nirogen, Phosphorus, and Potassium as ${nitrogen} kg/ha , ${Phosphorus} kg/ha , ${potassium} kg/ha is ${<strong style={{color:"HighlightText",fontWeight:"bold"}} >{newCrop.prediction}</strong>} `;
+                document.getElementById('crop').innerText =`${newCrop.prediction.toUpperCase()}`
+                let cropElement = document.getElementById('crop');
+
+// Add Bootstrap classes dynamically
+cropElement.classList.add('btn', 'btn-success','btn-lg');
                   setPhosphorus("");
                   sethumid(0);
                   setPhosphorus(0);
                   setpotassium(0);
                   setph(0);
                   setnitrogen(0);
+                //   setrain(0);
+                  
                    setstate(state+""); 
                 props.handleChange();
 
-                
+                setcropLoad(false);
                 
         }
         
@@ -231,25 +301,39 @@ export default function Form1(props) {
 
                     </div>
                     <div className="col-md-4 mb-3">
-                        <label htmlFor="validationDefault01">Nitrogen</label>
+                        <label htmlFor="validationDefault01">Nitrogen (kg/ha)</label>
                         <input type="text" className="form-control" id="validationDefault01" placeholder="Nitrogen" onChange={handleNitrogenChange} value={nitrogen} required />
                     </div>
                     <div className="col-md-4 mb-3">
-                        <label htmlFor="validationDefault02">Potassium</label>
+                        <label htmlFor="validationDefault02">Potassium (kg/ha)</label>
                         <input type="text" className="form-control" id="validationDefault02" placeholder="Potassium" onChange={handlePotassiumChange} value={potassium} required />
                     </div>
                     <div className="col-md-4 mb-3">
-                        <label htmlFor="validationDefault03">Phosphorus</label>
+                        <label htmlFor="validationDefault03">Phosphorus (kg/ha)</label>
                         <input type="text" className="form-control" id="validationDefault03" placeholder="Phosphorus" value={Phosphorus} onChange={handlePhosChange} required />
                     </div>
                    
                     <div className="col-md-4 mb-3">
-                        <label htmlFor="validationDefault04">pH</label>
+                        <label htmlFor="validationDefault04">pH </label>
                         <input type="text" className="form-control" id="validationDefault04" placeholder="pH" value={ph} onChange={handlephChange}  required />
                     </div>
                     <div className="col-md-4 mb-3">
-                        <button className="btn btn-success" type="submit" onClick={(e)=>{e.preventDefault();handleClick();handlechange();}}  >Predict Crop</button>
+                        <button className="btn btn-success" type="submit" onClick={(e)=>{e.preventDefault();handleClick();handlechange(); document.getElementById('crop').innerText ="";   let cropElement = document.getElementById('crop');
+
+// Add Bootstrap classes dynamically
+cropElement.classList.remove('btn', 'btn-success');   }}  >Predict Crop</button>
                     </div>
+                    {
+                        rainLoad=== true && <> <p className='fa-fade' style={{color:"blue"}} >Predicting RainFall... </p><img style={{width:"20%"}} src={Load} ></img> </>
+                    }
+                     {
+                      rainLoad===false &&  cropLoad=== true && <> <p className='fa-fade' style={{color:"green"}} >Predicting Best Crop... </p><img style={{width:"20%"}} src={Load} ></img> </>
+                    }
+                     <div>
+                        <p id="crop">
+
+                        </p> 
+                    </div> 
                 </div>
             </form >
         </div >
