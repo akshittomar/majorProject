@@ -82,10 +82,20 @@ export default function Form1(props) {
                 const temperature = data.current.temp_c; // Temperature in Celsius
                 const humidity = data.current.humidity; // Humidity percentage
                 const precipitation = data.current.precip_mm; // Precipitation in millimeters
-                var stateName = data.location.region.toUpperCase()+", "+data.location.name.toUpperCase();
+                var locationUrl = `https://api.opencagedata.com/geocode/v1/json?q=${latitude},${longitude}&key=2f7dc611d30e4383a2d9c500b180083a`
+                const location = await fetch(locationUrl);
+                if(!location.ok)
+                    {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+                     var locationData  = await location.json();
+                
+                console.log(locationData.results[0].components.state.toUpperCase());
+                console.log(locationData.results[0].components.county.toUpperCase());
+                var stateName = locationData.results[0].components.state.toUpperCase()+", "+locationData.results[0].components.county.toUpperCase();
                 setstate(stateName);
 
-                console.log(`Temperature: ${temperature}°C, Humidity: ${humidity}%, Precipitation: ${precipitation}mm , State name : ${ data.location.region} `);
+                console.log(`Temperature: ${temperature}°C, Humidity: ${humidity}%, Precipitation: ${precipitation}mm , State name : ${ stateName} `);
                 setcondition(data.current.condition);
                 // Update state with fetched data
                 sethumid(humidity);
@@ -137,7 +147,19 @@ export default function Form1(props) {
 
 
             const predection = "Assumed Result";
+
+           
                     ;
+                     // Clear previous content
+ let cropElement = document.getElementById('crop');
+ cropElement.innerText = ""; // Clear text content
+ cropElement.classList.remove('btn', 'btn-info', 'btn-lg'); // Remove classes
+
+ // Remove existing icon if present
+ let icon = cropElement.querySelector('.fa-brands.fa-pagelines');
+ if (icon) {
+     cropElement.removeChild(icon);
+ }
 
                 setrainLoad(true);
             
@@ -224,11 +246,33 @@ const currentMonth = currentDate.getMonth();
                 console.log(newCrop.prediction);
                 localStorage.setItem("cropPrediction",newCrop.prediction);
                 // document.getElementById('crop').innerText = `The best suited crop at ${temp}°C , ${localStorage.getItem('rain')}mm(Expected this month ) with ${humid}% Humidity and having Nirogen, Phosphorus, and Potassium as ${nitrogen} kg/ha , ${Phosphorus} kg/ha , ${potassium} kg/ha is ${<strong style={{color:"HighlightText",fontWeight:"bold"}} >{newCrop.prediction}</strong>} `;
-                document.getElementById('crop').innerText =`${newCrop.prediction.toUpperCase()}`
-                let cropElement = document.getElementById('crop');
+//                 document.getElementById('crop').innerText =`Result : ${newCrop.prediction.toUpperCase()}`
+//                 let cropElement = document.getElementById('crop');
 
-// Add Bootstrap classes dynamically
-cropElement.classList.add('btn', 'btn-success','btn-lg');
+// // Add Bootstrap classes dynamically
+// cropElement.classList.add('btn', 'btn-info' , 'btn-lg' );
+// let newIcon = document.createElement('i');
+// newIcon.classList.add('fa-brands', 'fa-pagelines');
+// cropElement.appendChild(newIcon);
+
+
+
+                     // Clear previous content
+                     let cropElement = document.getElementById('crop');
+
+
+ // Set new content
+ cropElement.innerText = `Result: ${newCrop.prediction.toUpperCase()}`;
+ 
+ // Add new classes
+ cropElement.classList.add('btn', 'btn-info', 'btn-lg');
+
+ // Add new icon
+ let newIcon = document.createElement('i');
+ newIcon.classList.add('fa-brands', 'fa-pagelines');
+ cropElement.appendChild(newIcon);
+
+
                   setPhosphorus("");
                   sethumid(0);
                   setPhosphorus(0);
@@ -318,10 +362,7 @@ cropElement.classList.add('btn', 'btn-success','btn-lg');
                         <input type="text" className="form-control" id="validationDefault04" placeholder="pH" value={ph} onChange={handlephChange}  required />
                     </div>
                     <div className="col-md-4 mb-3">
-                        <button className="btn btn-success" type="submit" onClick={(e)=>{e.preventDefault();handleClick();handlechange(); document.getElementById('crop').innerText ="";   let cropElement = document.getElementById('crop');
-
-// Add Bootstrap classes dynamically
-cropElement.classList.remove('btn', 'btn-success');   }}  >Predict Crop</button>
+                        <button className="btn btn-success" type="submit" onClick={(e)=>{e.preventDefault();handleClick();handlechange();    }}  >Predict Crop</button>
                     </div>
                     {
                         rainLoad=== true && <> <p className='fa-fade' style={{color:"blue"}} >Predicting RainFall... </p><img style={{width:"20%"}} src={Load} ></img> </>
