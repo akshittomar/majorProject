@@ -172,9 +172,8 @@ export default function Form1(props) {
                 var commaIndex = state.indexOf(',');
                 var State = state.substring(0, commaIndex).trim();
                 console.log("Extracted State: ", State);
-                if(State==="UTTARAKHAND")
-                    State = "UTTARANCHAL";
-                console.log("Extracted State: ", State);
+             
+                
 // Extract the city name using substring
                 var city = state.substring(commaIndex + 1).trim();
                 console.log("Extracted City: ", city)

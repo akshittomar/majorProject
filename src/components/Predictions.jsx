@@ -238,6 +238,7 @@ function Predictions() {
     });
     const json = await response.json();
     setCrop(json);
+    setLoad(false);
   };
 
   const getFertilizer = async (mail) => {
@@ -275,6 +276,7 @@ function Predictions() {
   useEffect(() => {
     const fetchData = async () => {
       if(isAuthenticated){
+        
       await getCrops(user.email);
       setLoad(false);}
       
