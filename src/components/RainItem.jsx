@@ -1,7 +1,7 @@
 import React from 'react'
-import Image from '../assets/crop2.jpg'
+import Image from '../assets/rain.jpg'
 import './Card.css'
-function CropItem(props) {
+function RainItem(props) {
 
 
   function formatDateTime(isoString) {
@@ -33,9 +33,9 @@ function CropItem(props) {
 
 
 
-  function getMonthName(isoString) {
+  function getMonthName(monthIndex) {
     // Create a Date object from the ISO string
-    const date = new Date(isoString);
+    
   
     // Array of month names
     const monthNames = [
@@ -44,7 +44,7 @@ function CropItem(props) {
     ];
   
     // Get the month index from the Date object (0-11)
-    const monthIndex = date.getMonth();
+    
   
     // Return the corresponding month name
     return monthNames[monthIndex];
@@ -54,19 +54,19 @@ function CropItem(props) {
     <div>
     <div className="card card-custom" >
     <div className="card-header">
-   Crop Prediction &nbsp; <i className="fa-regular fa-clock"></i> {formatDateTime(props.crop.date)}
+   Rain Prediction &nbsp; <i className="fa-regular fa-clock"></i> {formatDateTime(props.crop.date)}
   </div>
   <img className="card-img-top img-fluid" src={Image} alt="Card image cap"/>
  
   <div className="card-body">
-  <h5 className="card-title">{props.crop.prediction.toUpperCase()}<i className="fa-solid fa-wheat-awn"></i></h5>
-    <h6 className="card-subtitle mb-2 text-body-secondary"><i className="fa-solid fa-temperature-high fa-lg"></i>&nbsp;:{props.crop.temp}°C&nbsp; <i className="fa-solid fa-droplet fa-lg"></i> :{props.crop.humid}%</h6>
-    <p className="card-text"><strong>Nitrogen in soil</strong> : {props.crop.nitro} kg/ha </p>
+  <h5 className="card-title">{props.crop.Prediction.toUpperCase()} mm of Rainfall <i className="fa-solid fa-cloud-moon-rain"></i></h5>
+  
+    <p className="card-text"><strong>State </strong> : {props.crop.State}  </p>
     
     
-    <p className="card-text"><strong>Potassium in soil</strong> : {props.crop.k} kg/ha </p>
-    <p className="card-text"><strong>Phosphorous in soil</strong> : {props.crop.p} kg/ha </p>
-    <p className="card-text"><strong>Expected rainfall  </strong> : {props.crop.rain} mm </p>
+    <p className="card-text"><strong>District</strong> : {props.crop.District} </p>
+    <p className="card-text"><strong>Month</strong> : {getMonthName(props.crop.Month)}  </p>
+  
     {/* <p className="card-text"><strong>Ph value</strong>:{props.crop.ph}</p> */}
     {/* <p className="card-text">{props.crop.humid}</p> */}
   </div>
@@ -75,4 +75,4 @@ function CropItem(props) {
   )
 }
 
-export default CropItem
+export default RainItem

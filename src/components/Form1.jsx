@@ -1,4 +1,6 @@
 import React,{useState,useEffect} from 'react'
+import { useAuth0 } from "@auth0/auth0-react";
+
 import Load from '../assets/Bars.gif';
 export default function Form1(props) {
 
@@ -22,7 +24,7 @@ export default function Form1(props) {
     const [crop, setcrop] = useState(null);
     const [rainLoad, setrainLoad] = useState(false)
     const [cropLoad, setcropLoad] = useState(false);
-    
+    const { user, isAuthenticated, isLoading } = useAuth0();
     
     function handleGetLocation (){
         if ("geolocation" in navigator) {
@@ -122,7 +124,7 @@ export default function Form1(props) {
                 'Content-Type':'application/json',
                 
               },
-              body: JSON.stringify({email:email,name:"Akshit"})
+              body: JSON.stringify({email:email,name:user.name})
             });
         
             const json = await response.json();
@@ -164,7 +166,7 @@ export default function Form1(props) {
                 setrainLoad(true);
             
 
-                await createUser("akshitt125@gmail.com");
+                await createUser(user.email);
                 //console.log("PARAMETERS OF ADD NOTE"+title+" "+description+" "+tag);
 
                 var commaIndex = state.indexOf(',');
@@ -191,7 +193,7 @@ const currentMonth = currentDate.getMonth();
                     'Content-Type':'application/json',
                    
                   },
-                  body: JSON.stringify({email:"akshitt125@gmail.com",State:State,District:city,Month:monthNumber})
+                  body: JSON.stringify({email:user.email,State:State,District:city,Month:monthNumber})
                 });
             
                 const rain = await response.json();
@@ -224,7 +226,7 @@ const currentMonth = currentDate.getMonth();
 
                 
 
-                    await createUser("akshitt125@gmail.com");
+                    await createUser(user.email);
                     //console.log("PARAMETERS OF ADD NOTE"+title+" "+description+" "+tag);
                 
                 
@@ -234,7 +236,7 @@ const currentMonth = currentDate.getMonth();
                         'Content-Type':'application/json',
                        
                       },
-                      body: JSON.stringify({email:"akshitt125@gmail.com",rain:fetchedRain,temp:temp,humid:humid,nitro:nitrogen,p:Phosphorus,k:potassium,ph:ph})
+                      body: JSON.stringify({email:user.email,rain:fetchedRain,temp:temp,humid:humid,nitro:nitrogen,p:Phosphorus,k:potassium,ph:ph})
                     });
                 
                     const json = await response.json();
@@ -365,7 +367,7 @@ const currentMonth = currentDate.getMonth();
                         <button className="btn btn-success" type="submit" onClick={(e)=>{e.preventDefault();handleClick();handlechange();    }}  >Predict Crop</button>
                     </div>
                     {
-                        rainLoad=== true && <> <p className='fa-fade' style={{color:"blue"}} >Predicting RainFall... </p><img style={{width:"20%"}} src={Load} ></img> </>
+                        rainLoad=== true && <> <p className='fa-fade' style={{color:"blue"}} >Collecting  RainFall Info... </p><img style={{width:"20%"}} src={Load} ></img> </>
                     }
                      {
                       rainLoad===false &&  cropLoad=== true && <> <p className='fa-fade' style={{color:"green"}} >Predicting Best Crop... </p><img style={{width:"20%"}} src={Load} ></img> </>

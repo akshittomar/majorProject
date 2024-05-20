@@ -1,7 +1,7 @@
 import React from 'react'
-import Image from '../assets/crop2.jpg'
+import Image from '../assets/fertilizer.jpg'
 import './Card.css'
-function CropItem(props) {
+function FertilizerItem(props) {
 
 
   function formatDateTime(isoString) {
@@ -54,19 +54,21 @@ function CropItem(props) {
     <div>
     <div className="card card-custom" >
     <div className="card-header">
-   Crop Prediction &nbsp; <i className="fa-regular fa-clock"></i> {formatDateTime(props.crop.date)}
+   Fertilizer Prediction &nbsp; <i className="fa-regular fa-clock"></i> {formatDateTime(props.crop.date)}
   </div>
   <img className="card-img-top img-fluid" src={Image} alt="Card image cap"/>
  
   <div className="card-body">
-  <h5 className="card-title">{props.crop.prediction.toUpperCase()}<i className="fa-solid fa-wheat-awn"></i></h5>
-    <h6 className="card-subtitle mb-2 text-body-secondary"><i className="fa-solid fa-temperature-high fa-lg"></i>&nbsp;:{props.crop.temp}°C&nbsp; <i className="fa-solid fa-droplet fa-lg"></i> :{props.crop.humid}%</h6>
-    <p className="card-text"><strong>Nitrogen in soil</strong> : {props.crop.nitro} kg/ha </p>
+  <h5 className="card-title">{props.crop.Prediction.toUpperCase()}<i className="fa-solid fa-oil-can"></i></h5>
+    <h6 className="card-subtitle mb-2 text-body-secondary"><i className="fa-solid fa-temperature-high fa-lg"></i>&nbsp;:{props.crop.Temperature}°C&nbsp; <i className="fa-solid fa-droplet fa-lg"></i> :{props.crop.Humidity}%</h6>
+    <p className="card-text"><strong>Nitrogen in soil</strong> : {props.crop.Nitrogen} kg/ha </p>
     
     
-    <p className="card-text"><strong>Potassium in soil</strong> : {props.crop.k} kg/ha </p>
-    <p className="card-text"><strong>Phosphorous in soil</strong> : {props.crop.p} kg/ha </p>
-    <p className="card-text"><strong>Expected rainfall  </strong> : {props.crop.rain} mm </p>
+    <p className="card-text"><strong>Potassium in soil</strong> : {props.crop.Potassium} kg/ha </p>
+    <p className="card-text"><strong>Phosphorous in soil</strong> : {props.crop.Phosphorous} kg/ha </p>
+    <p className="card-text"><strong>Soil Type  </strong> : {props.crop.Soil_Type} </p>
+    <p className="card-text"><strong>Crop Type  </strong> : {props.crop.Crop_Type} </p>
+    <p className="card-text"><strong>Soil Moisture  </strong> : {props.crop.Soil_Moist} % </p>
     {/* <p className="card-text"><strong>Ph value</strong>:{props.crop.ph}</p> */}
     {/* <p className="card-text">{props.crop.humid}</p> */}
   </div>
@@ -75,4 +77,4 @@ function CropItem(props) {
   )
 }
 
-export default CropItem
+export default FertilizerItem
