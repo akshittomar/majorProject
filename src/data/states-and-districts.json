@@ -28,31 +28,31 @@
             "Kurung Kumey",
             "Kra Daadi",
             "Lower Subansiri",
-            "Upper Subansiri",
+            "Subansiri",
             "West Siang",
             "East Siang",
-            "Siang",
+            
             "Upper Siang",
             "Lower Siang",
-            "Lower Dibang Valley",
+            "Lower Dibang",
             "Dibang Valley",
             "Anjaw",
             "Lohit",
-            "Namsai",
+            
             "Changlang",
-            "Tirap",
-            "Longding"
+            "Tirap"
+            
          ]
       },
       {  
          "state":"Assam",
          "districts":[  
-            "Baksa",
+            "Baksa Barpeta",
             "Barpeta",
-            "Biswanath",
+            
             "Bongaigaon",
             "Cachar",
-            "Charaideo",
+            
             "Chirang",
             "Darrang",
             "Dhemaji",
@@ -61,25 +61,25 @@
             "Goalpara",
             "Golaghat",
             "Hailakandi",
-            "Hojai",
+            
             "Jorhat",
-            "Kamrup Metropolitan",
+            "Kamrup Metrop",
             "Kamrup",
             "Karbi Anglong",
             "Karimganj",
             "Kokrajhar",
             "Lakhimpur",
-            "Majuli",
+            
             "Morigaon",
             "Nagaon",
             "Nalbari",
-            "Dima Hasao",
+            
             "Sivasagar",
-            "Sonitpur",
-            "South Salmara-Mankachar",
+            
+            
             "Tinsukia",
             "Udalguri",
-            "West Karbi Anglong"
+            "Karbi Anglong"
          ]
       },
       {  
@@ -98,8 +98,8 @@
             "Gaya",
             "Gopalganj",
             "Jamui",
-            "Jehanabad",
-            "Kaimur",
+            
+            
             "Katihar",
             "Khagaria",
             "Kishanganj",
@@ -111,7 +111,7 @@
             "Nalanda",
             "Nawada",
             "Patna",
-            "Purnia",
+            
             "Rohtas",
             "Saharsa",
             "Samastipur",
@@ -132,45 +132,43 @@
          ]
       },
       {  
-         "state":"Chhattisgarh",
+         "state":"Chatisgarh",
          "districts":[  
-            "Balod",
-            "Baloda Bazar",
-            "Balrampur",
-            "Bastar",
-            "Bemetara",
-            "Bijapur",
-            "Bilaspur",
-            "Dantewada",
-            "Dhamtari",
-            "Durg",
-            "Gariyaband",
-            "Janjgir-Champa",
-            "Jashpur",
-            "Kabirdham",
-            "Kanker",
-            "Kondagaon",
-            "Korba",
-            "Korea",
-            "Mahasamund",
-            "Mungeli",
-            "Narayanpur",
-            "Raigarh",
-            "Raipur",
-            "Rajnandgaon",
-            "Sukma",
-            "Surajpur  ",
-            "Surguja"
+          
+          
+               "Bastar",
+            
+                  "Bijapur",
+                "Bilaspur",
+               "Dantewada",
+                   "Dhamtari",
+              "Durg",
+           
+                "Janjgir-Champ",
+                "Jashpur",
+       
+                  "Kanker",
+          
+                "Korba",
+                     "Koriya",
+                   "Mahasamund",
+           
+                "Narayanpur",
+                "Raigarh",
+               "Raipur",
+                  "Rajnandgaon",
+            
+                   "Surguja"
          ]
       },
       {  
-         "state":"Dadra and Nagar Haveli",
+         "state":"DADAR NAGAR HAVELI",
          "districts":[  
-            "Dadra & Nagar Haveli"
+            "DADAR NAGAR HAVELI"
          ]
       },
       {  
-         "state":"Daman and Diu",
+         "state":"Daman and Dui",
          "districts":[  
             "Daman",
             "Diu"
@@ -179,17 +177,17 @@
       {  
          "state":"Delhi",
          "districts":[  
-            "Central Delhi",
-            "East Delhi",
-            "New Delhi",
-            "North Delhi",
-            "North East  Delhi",
-            "North West  Delhi",
-            "Shahdara",
-            "South Delhi",
-            "South East Delhi",
-            "South West  Delhi",
-            "West Delhi"
+                  "Central Delhi",
+                   "East Delhi",
+                 "New Delhi",
+                   "North Delhi",
+            "NORTH EAST  DELHI",
+                "NW DELHI",
+            
+                 "South Delhi",
+            
+                "SW DELHI",
+                    "West Delhi"
          ]
       },
       {  
@@ -202,11 +200,12 @@
       {  
          "state":"Gujarat",
          "districts":[  
-            "Ahmedabad",
-            "Amreli",
-            "Anand",
+                 "Ahmedabad",
+               "Amreli",
+            "Anand(KHR)",
             "Aravalli",
             "Banaskantha",
+            "BARODA",
             "Bharuch",
             "Bhavnagar",
             "Botad",
@@ -225,7 +224,7 @@
             "Morbi",
             "Narmada",
             "Navsari",
-            "Panchmahal",
+            "Panchmahals",
             "Patan",
             "Porbandar",
             "Rajkot",

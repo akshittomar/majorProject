@@ -20,6 +20,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import Form1 from '../components/Form1'
 import Form2 from '../components/Form2'
 import Form3 from '../components/Form3';
+import App from './Sample';
 
 function Card(props) {
     // Unique ID for each modal based on the card's ID prop
@@ -69,6 +70,7 @@ function Card(props) {
                 {  isAuthenticated &&  props.id==='1' && <Form1  handleChange={handleChange} change={change}  />}
                 {  isAuthenticated && props.id==='2' && <Form2  handleChange={handleChange} change={change}  ></Form2>}
                 {   isAuthenticated && props.id==='3' && <Form3    ></Form3>}
+                {   isAuthenticated && props.id==='4' && <App    ></App>}
                 {/* Add more conditions here for other IDs */}
               </div>
               <div className="modal-footer">

@@ -15,10 +15,10 @@ function CropGuide() {
         <img src={cropguide} className="img-fluid cropguide-image" alt="Crop Guide" />
       </div>
       <div className="cards-container">
-        <Card  image={img3} text='Please explore crop prediction here ' id='1' heading='Crop Predictor' />
+        <Card  image={img3}  text='Please explore crop prediction here ' id='1' heading='Crop Predictor' />
         <Card   image={img4}   text='Please explore fertilizer prediction here ' id='2' heading='Fertilizer Predictor' />
-        <Card image={img2} text='Please explore rainfall prediction here ' id='3' heading='Rainfall Predictor' />
-        {/* <Card image={img3} text='Please explore yeild prediction here ' id='4' heading='Yeild Predictor' /> */}
+        {/* <Card image={img2} text='Please explore rainfall prediction here ' id='3' heading='Rainfall Predictor' /> */}
+        <Card image={img2} text='Please explore rainfall prediction here ' id='4' heading='Rainfall Predictor' />
       </div>
     </div>
   );
